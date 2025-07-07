@@ -207,22 +207,20 @@ createSearchFunction();
 
 // Print functionality
 function addPrintButton() {
-    const printButton = document.createElement('button');
-    printButton.innerHTML = '<i class="fas fa-print"></i> Imprimir';
-    printButton.className = 'btn btn-secondary print-btn';
-    printButton.style.cssText = `
+    const downloadButton = document.createElement('button');
+    downloadButton.innerHTML = '<i class="fas fa-download"></i> Baixar Cartilha';
+    downloadButton.className = 'btn btn-secondary print-btn';
+    downloadButton.href = 'assets/cartilha.pdf'; // ou 'assets/cartilha.pdf'
+    downloadButton.download = 'cartilha.pdf';    // nome sugerido para o download
+    downloadButton.style.cssText = `
         position: fixed;
         bottom: 20px;
         right: 20px;
         z-index: 999;
         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     `;
-    
-    printButton.addEventListener('click', function() {
-        window.print();
-    });
-    
-    document.body.appendChild(printButton);
+
+    document.body.appendChild(downloadButton);
 }
 
 // Initialize print button
