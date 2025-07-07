@@ -207,7 +207,7 @@ createSearchFunction();
 
 // Print functionality
 function addPrintButton() {
-    const downloadButton = document.createElement('button');
+    const downloadButton = document.createElement('a');
     downloadButton.innerHTML = '<i class="fas fa-download"></i> Baixar Cartilha';
     downloadButton.className = 'btn btn-secondary print-btn';
     downloadButton.href = 'assets/cartilha.pdf'; // ou 'assets/cartilha.pdf'
