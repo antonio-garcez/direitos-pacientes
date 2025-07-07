@@ -205,36 +205,101 @@ createSearchFunction();
 //     });
 // });
 
-// Print functionality
-function addPrintButton() {
-    const downloadButton = document.createElement('a');
-    downloadButton.innerHTML = '<i class="fas fa-download"></i> Baixar Cartilha';
-    downloadButton.className = 'btn btn-secondary print-btn';
-    downloadButton.href = 'assets/cartilha.pdf'; // ou 'assets/cartilha.pdf'
-    downloadButton.download = 'cartilha.pdf';    // nome sugerido para o download
-    downloadButton.style.cssText = `
+// // Print functionality
+// function addPrintButton() {
+//     const downloadButton = document.createElement('a');
+//     downloadButton.innerHTML = '<i class="fas fa-download"></i> Baixar Cartilha';
+//     downloadButton.className = 'btn btn-secondary print-btn';
+//     downloadButton.href = 'assets/cartilha.pdf'; // ou 'assets/cartilha.pdf'
+//     downloadButton.download = 'cartilha.pdf';    // nome sugerido para o download
+//     downloadButton.style.cssText = `
+//         position: fixed;
+//         bottom: 20px;
+//         right: 20px;
+//         z-index: 999;
+//         box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+//         margin-top: 60px;
+//     `;
+
+//     document.body.appendChild(downloadButton);
+// }
+
+// // Initialize print button
+// addPrintButton();
+
+// // Back to top button
+// function addBackToTopButton() {
+//     const backToTopButton = document.createElement('button');
+//     backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
+//     backToTopButton.className = 'back-to-top';
+//     backToTopButton.style.cssText = `
+//         position: fixed;
+//         bottom: 80px;
+//         right: 20px;
+//         width: 50px;
+//         height: 50px;
+//         background: #2563eb;
+//         color: white;
+//         border: none;
+//         border-radius: 50%;
+//         cursor: pointer;
+//         opacity: 0;
+//         visibility: hidden;
+//         transition: all 0.3s ease;
+//         z-index: 999;
+//         box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
+//     `;
+    
+//     backToTopButton.addEventListener('click', function() {
+//         window.scrollTo({
+//             top: 0,
+//             behavior: 'smooth'
+//         });
+//     });
+    
+//     window.addEventListener('scroll', function() {
+//         if (window.scrollY > 300) {
+//             backToTopButton.style.opacity = '1';
+//             backToTopButton.style.visibility = 'visible';
+//         } else {
+//             backToTopButton.style.opacity = '0';
+//             backToTopButton.style.visibility = 'hidden';
+//         }
+//     });
+    
+//     document.body.appendChild(backToTopButton);
+// }
+
+// // Initialize back to top button
+// addBackToTopButton();
+
+// Botões flutuantes (download + voltar ao topo)
+function addFloatingButtons() {
+    const container = document.createElement('div');
+    container.style.cssText = `
         position: fixed;
         bottom: 20px;
         right: 20px;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 12px;
         z-index: 999;
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
     `;
 
-    document.body.appendChild(downloadButton);
-}
+    // Botão de download
+    const downloadButton = document.createElement('a');
+    downloadButton.innerHTML = '<i class="fas fa-download"></i> Baixar Cartilha';
+    downloadButton.className = 'btn btn-secondary';
+    downloadButton.href = 'assets/cartilha.pdf';
+    downloadButton.download = 'cartilha.pdf';
+    downloadButton.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.2)';
 
-// Initialize print button
-addPrintButton();
-
-// Back to top button
-function addBackToTopButton() {
+    // Botão "voltar ao topo"
     const backToTopButton = document.createElement('button');
     backToTopButton.innerHTML = '<i class="fas fa-arrow-up"></i>';
     backToTopButton.className = 'back-to-top';
     backToTopButton.style.cssText = `
-        position: fixed;
-        bottom: 80px;
-        right: 20px;
         width: 50px;
         height: 50px;
         background: #2563eb;
@@ -245,32 +310,32 @@ function addBackToTopButton() {
         opacity: 0;
         visibility: hidden;
         transition: all 0.3s ease;
-        z-index: 999;
         box-shadow: 0 4px 15px rgba(37, 99, 235, 0.3);
     `;
-    
-    backToTopButton.addEventListener('click', function() {
-        window.scrollTo({
-            top: 0,
-            behavior: 'smooth'
-        });
+
+    // Ações do botão "voltar ao topo"
+    backToTopButton.addEventListener('click', function () {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
     });
-    
-    window.addEventListener('scroll', function() {
-        if (window.scrollY > 300) {
-            backToTopButton.style.opacity = '1';
-            backToTopButton.style.visibility = 'visible';
-        } else {
-            backToTopButton.style.opacity = '0';
-            backToTopButton.style.visibility = 'hidden';
-        }
+
+    window.addEventListener('scroll', function () {
+        const visible = window.scrollY > 300;
+        backToTopButton.style.opacity = visible ? '1' : '0';
+        backToTopButton.style.visibility = visible ? 'visible' : 'hidden';
     });
-    
-    document.body.appendChild(backToTopButton);
+
+    // Adiciona botões ao contêiner
+    container.appendChild(backToTopButton);
+    container.appendChild(downloadButton);
+
+    // Adiciona contêiner ao body
+    document.body.appendChild(container);
 }
 
-// Initialize back to top button
-addBackToTopButton();
+// Inicializar botões flutuantes
+addFloatingButtons();
+
+
 
 // Enhanced keyboard navigation
 document.addEventListener('keydown', function(e) {
