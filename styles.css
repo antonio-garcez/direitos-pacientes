@@ -491,7 +491,7 @@ body {
 }
 
 /* Animations */
-@keyframes fadeInUp {
+/* @keyframes fadeInUp {
     from {
         opacity: 0;
         transform: translateY(30px);
@@ -500,18 +500,18 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-}
+} */
 
-.card {
-    animation: fadeInUp 0.6s ease-out;
+/* .card {
+    animation: fadeInUp 0.2s ease-out;
 }
 
 .contact-card {
-    animation: fadeInUp 0.6s ease-out;
-}
+    animation: fadeInUp 0.2s ease-out;
+} */
 
 /* Accessibility */
-@media (prefers-reduced-motion: reduce) {
+/* @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
@@ -521,7 +521,7 @@ body {
     html {
         scroll-behavior: auto;
     }
-}
+} */
 
 /* Focus styles for accessibility */
 .btn:focus,
